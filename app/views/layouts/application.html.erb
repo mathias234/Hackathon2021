@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hackathon2021</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <div class="p-4 space-x-4 bg-gray-800">
+      <strong class="text-white font-bold">Hackathon 2021</strong>
+      <ul class="float-right">
+        <li class="inline-block text-gray-200 hover:underline"><a href="/">Home</a></li>
+        <div class="inline-block text-gray-200">|</div>
+        <% if session[:user_id] %>
+          <li class="inline-block text-gray-200 hover:underline"><%= link_to "Profile", profile_path %></li>
+          <div class="inline-block text-gray-200">|</div>
+          <li class="inline-block text-gray-200 hover:underline"><%= link_to "Logout", logout_path, method: :delete %></li>
+        <% else %>
+          <li class="inline-block text-gray-200 hover:underline"><%= link_to "Login", login_path %></li>
+        <% end %>
+      </ul>
+    </div>
+    <%= yield %>
+  </body>
+</html>
