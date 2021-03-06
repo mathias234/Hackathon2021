@@ -1,31 +1,35 @@
+<div class="container w-max m-5 p-5 bg-gray-800 text-gray-200 border-2 border-gray-800 rounded">
 <% if flash[:alert] %>
   <aside class="w-80 p-5 border-2 border-gray-700 text-gray-700"><%= flash[:alert] %></aside>
 <% end %>
 
 <%= form_tag do %>
-  <h2 class="text-2xl">Login:</h2>
+  <h2 class="text-4xl pb-5">Login</h2>
   <div class="w-80 space-y-3">
     <div class="field">
-      <%= label_tag :email, 'Email:', class: 'text-gray-700' %>
-      <div>
+      <%= label_tag :email, 'Email:' %>
+      <div class="text-gray-800 rounded">
         <%= text_field_tag :email, 
             params[:name], 
-            class: 'w-80 border-gray-800 rounded-lg' %>
+            class: "p-1 w-80 rounded" 
+          %>
       </div>
     </div>
     
     <div class="field">
-      <%= label_tag :password, 'Password:', class: 'text-gray-700' %>
-      <div>
+      <%= label_tag :password, 'Password:' %>
+      <div class="text-gray-800 rounded">
         <%= password_field_tag :password, 
             params[:password], 
-            class: 'w-80 border-gray-800 rounded-lg' %>
+            class: "p-1 w-80 rounded" 
+          %>
       </div>
     </div>
 
     <div class="actions">
-      <%= submit_tag "Login", class: 'btn-indigo' %>
+      <%= submit_tag "Login", class: "border-2 rounded border-gray-200 py-1 px-2 bg-gray-200 text-gray-800 hover:bg-gray-300" %>
     </div>
   </div>
 <% end %>
 <%= link_to 'Create User', :controller => 'users', action: 'new' %>
+</div>

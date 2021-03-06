@@ -11,22 +11,28 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div>
     <%= form.label :email %>
-    <%= form.text_field :email %>
+    <div class="text-gray-800 rounded">
+      <%= form.text_field :email, class: "p-1 w-80 rounded"  %>
+    </div>
   </div>
 
-  <div class="field">
+  <div>
     <%= form.label :password %>
-    <%= form.password_field :password %>
+    <div class="text-gray-800 rounded">
+      <%= form.password_field :password, class: "p-1 w-80 rounded"  %>
+    </div>
   </div>
 
-  <div class="field">
+  <div>
     <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
+    <div class="text-gray-800 rounded">
+      <%= form.password_field :password_confirmation, class: "p-1 w-80 rounded" %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="py-2">
+    <%= form.submit class: "border-2 rounded border-gray-200 py-1 px-2 bg-gray-200 text-gray-800 hover:bg-gray-300" %>
   </div>
 <% end %>
