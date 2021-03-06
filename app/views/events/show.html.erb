@@ -1,52 +1,56 @@
-<div class="container w-max m-5 p-5 bg-gray-800 text-gray-200 border-2 border-gray-800 rounded">
+<div class="w-auto m-5 p-5 bg-gray-800 text-gray-200 border-2 border-gray-800 rounded">
+
   <p id="notice"><%= notice %></p>
 
-  <p>
-    <strong class="text-3xl"> <%= @event.title %></strong>
-  </p>
+  <div class="">
 
-  <p>
-    <%= @event.description %>
-  </p>
+    <div class="inline-block">
+      <p>
+        <strong class="text-3xl"> <%= @event.title %></strong>
+      </p>
 
-  <p>
-    <strong>From:</strong>
-    <%= @event.from_date %>
-  </p>
+      <p>
+        <%= @event.description %>
+      </p>
 
-  <p>
-    <strong>To:</strong>
-    <%= @event.to_date %>
-  </p>
+      <p>
+        <strong>From:</strong>
+        <%= @event.from_date %>
+      </p>
 
-  <br> 
-  <p>
-    <strong>Attendees:</strong>
-    <% @event.attendees.each do |attendee| %>
-      <p><%= link_to attendee.user.email, profile_path(id: attendee.user.id), class: "hover:underline"%></p>
-    <% end %>
-  </p>
-  <br>
-  <p>
-    <% if session[:user_id] %>
-      <%= form_with(url: post_comment_path(id: @event.id), local: true) do |form| %>
-        <div>
-          <%= form.label :comment %>
-        </div>
-        <div>
-          <%= form.text_area :comment, class: 'text-gray-800 rounded p-1 w-80' %> 
-        </div>
-        <div>
-          <%= form.submit 'Post', class: 'border-2 rounded border-gray-200 py-1 px-2 bg-gray-200 text-gray-800 hover:bg-gray-300' %></div>
+      <p>
+        <strong>To:</strong>
+        <%= @event.to_date %>
+      </p>
+    </div>
+    <div class="inline-block float-right">
+      <strong>Attendees:</strong>
+      <% @event.attendees.each do |attendee| %>
+        <p><%= link_to attendee.user.email, profile_path(id: attendee.user.id), class: "hover:underline"%></p>
       <% end %>
-    <% end %>
-
-    <strong>Comments:</strong>
-    <% @event.comments.order(id: :desc).each do |comment| %>
-      <div class="py-2">
-        <p>Posted by <strong><%= comment.user.email %></strong></p>
-        <p class="pl-1"><%= comment.comment_text%>
+    </div>
+  </div>
+  <br/>
+  <% if session[:user_id] %>
+    <%= form_with(url: post_comment_path(id: @event.id), local: true) do |form| %>
+      <div>
+        <%= form.label :comment %>
       </div>
+      <div>
+        <%= form.text_area :comment, class: 'text-gray-800 rounded p-1 w-80' %> 
+      </div>
+      <div>
+        <%= form.submit 'Post', class: 'border-2 rounded border-gray-200 py-1 px-2 bg-gray-200 text-gray-800 hover:bg-gray-300' %>
+     </div>
     <% end %>
-  </p>
+  <% end %>
+
+  <br />
+  <strong>Comments:</strong>
+  <% @event.comments.order(id: :desc).each do |comment| %>
+    <div class="py-2">
+      <p>Posted by <strong><%= comment.user.email %></strong></p>
+      <p class="pl-1"><%= comment.comment_text%></p>
+    </div>
+  <% end %>
 </div>
