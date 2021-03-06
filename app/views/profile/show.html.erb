@@ -1,2 +1,16 @@
-<h1>Profile#show</h1>
-<p>Find me in app/views/profile/show.html.erb</p>
+<div class="container w-max m-5 p-5 bg-gray-800 text-gray-200 border-2 border-gray-800 rounded">
+  <p>
+    <strong class="text-4xl"><%= @user.email %></strong>
+  </p>
+
+  <p>
+    <strong>Events:</strong>
+    <% @user.attendees.each do |attendee| %> 
+      <p>
+      <%= link_to attendee.event.title, event_path(id: attendee.event.id), class: "hover:underline"%> 
+      <p>
+    <% end %>
+  </p>
+
+
+</div>

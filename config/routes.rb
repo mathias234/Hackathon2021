@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   resources :users
   get 'login', to: 'login#index'
   get 'login/create'
-  get 'profile', to: 'profile#show'
-  get 'profile/create'
+  resources :profile
   get '/', to: 'events#index'
   get 'join_event', to: 'events#join_event'
   get 'leave_event', to: 'events#leave_event'

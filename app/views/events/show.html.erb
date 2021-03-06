@@ -23,7 +23,7 @@
   <p>
     <strong>Attendees:</strong>
     <% @event.attendees.each do |attendee| %>
-      <p><%= attendee.user.email %> </p>
+      <p><%= link_to attendee.user.email, profile_path(id: attendee.user.id), class: "hover:underline"%></p>
     <% end %>
   </p>
 
