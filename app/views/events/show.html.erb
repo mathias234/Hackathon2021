@@ -1,24 +1,32 @@
-<p id="notice"><%= notice %></p>
+<div class="container w-max m-5 p-5 bg-gray-800 text-gray-200 border-2 border-gray-800 rounded">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+  <p>
+    <strong class="text-3xl"> <%= @event.title %></strong>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+  <p>
+    <%= @event.description %>
+  </p>
 
-<p>
-  <strong>From date:</strong>
-  <%= @event.from_date %>
-</p>
+  <p>
+    <strong>From:</strong>
+    <%= @event.from_date %>
+  </p>
 
-<p>
-  <strong>To date:</strong>
-  <%= @event.to_date %>
-</p>
+  <p>
+    <strong>To:</strong>
+    <%= @event.to_date %>
+  </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+  <br> 
+  <p>
+    <strong>Attendees:</strong>
+    <% @event.attendees.each do |attendee| %>
+      <p><%= attendee.user.email %> </p>
+    <% end %>
+  </p>
+
+  <br>
+  <%= link_to 'Back', events_path, class: "border-2 rounded border-gray-200 py-1 px-2 bg-gray-200 text-gray-800 hover:bg-gray-300"  %>
+</div>

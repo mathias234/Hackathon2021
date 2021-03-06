@@ -8,7 +8,11 @@
     <% @events.each do |event| %>
       <div class="my-5 p-5 bg-gray-800 text-gray-200 border-2 border-gray-800 rounded">
         <% if session[:user_id] %>
-          <%= link_to 'Join', join_event_path(id: event.id), class: "float-right border-2 rounded border-gray-200 py-2 px-4 bg-gray-200 text-gray-800 hover:bg-gray-300" %> 
+          <% if !event.attendees.find { |attendee| attendee.user_id == session[:user_id] } %> 
+            <%= link_to 'Join', join_event_path(id: event.id), class: "float-right border-2 rounded border-gray-200 py-2 px-4 bg-gray-200 text-gray-800 hover:bg-gray-300" %> 
+          <% else %>
+            <%= link_to 'Leave', leave_event_path(id: event.id), class: "float-right border-2 rounded border-gray-200 py-2 px-4 bg-gray-200 text-gray-800 hover:bg-gray-300" %> 
+          <% end %>
         <% end %>
 
         <div class="flex pb-1">
@@ -20,6 +24,9 @@
           </div>
         </div>
         <%= event.description %>
+        <div class="text-gray-600">
+          <%= event.attendees.count %> people attending
+        </div>
       </div>
     <% end %>
 

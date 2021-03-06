@@ -17,8 +17,29 @@ class EventsController < ApplicationController
 
   def join_event 
     @event = Event.find(params[:id])
-    redirect_to :controller => 'events', :action => 'index'
-     
+    @user = User.find(session[:user_id])
+    attendee = Attendee.new()
+    attendee.user = @user
+    attendee.event = @event
+    respond_to do |format| 
+      if attendee.save() 
+        format.html { redirect_to :controller => 'events', :action => 'index' }
+      else 
+        format.html { redirect_to :controller => 'events', :action => 'index', notice: "Unable to join event" }
+      end
+    end
+  end
+
+  def leave_event 
+    attendee = Attendee.find_by :user_id => session[:user_id], event_id: params[:id]
+    respond_to do |format| 
+      if attendee 
+        attendee.destroy()
+        format.html { redirect_to :controller => 'events', :action => 'index' } 
+      else 
+        format.html { redirect_to :controller => 'events', :action => 'index', notice: "Unable to find event" }
+      end
+    end
   end
 
   # POST /events or /events.json
