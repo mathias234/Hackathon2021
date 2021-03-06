@@ -28,15 +28,17 @@
   </p>
   <br>
   <p>
-    <%= form_with(url: post_comment_path(id: @event.id), local: true) do |form| %>
-      <div>
-        <%= form.label :comment %>
-      </div>
-      <div>
-        <%= form.text_area :comment, class: 'text-gray-800 rounded p-1 w-80' %> 
-      </div>
-      <div>
-        <%= form.submit 'Post', class: 'border-2 rounded border-gray-200 py-1 px-2 bg-gray-200 text-gray-800 hover:bg-gray-300' %></div>
+    <% if session[:user_id] %>
+      <%= form_with(url: post_comment_path(id: @event.id), local: true) do |form| %>
+        <div>
+          <%= form.label :comment %>
+        </div>
+        <div>
+          <%= form.text_area :comment, class: 'text-gray-800 rounded p-1 w-80' %> 
+        </div>
+        <div>
+          <%= form.submit 'Post', class: 'border-2 rounded border-gray-200 py-1 px-2 bg-gray-200 text-gray-800 hover:bg-gray-300' %></div>
+      <% end %>
     <% end %>
 
     <strong>Comments:</strong>
