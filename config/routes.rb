@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :events
   controller :sessions do 
     get 'login' => :new
     post 'login' => :create
@@ -10,5 +11,6 @@ Rails.application.routes.draw do
   get 'profile', to: 'profile#show'
   get 'profile/create'
   get '/', to: 'events#index'
+  get 'join_event', to: 'events#join_event'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,47 @@
+<%= form_with(model: event, local: true) do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+        <% event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div>
+    <%= form.label :title %>
+    <div class="text-gray-800">
+      <%= form.text_field :title, class: "p-1 w-80 rounded" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <div class="text-gray-800 rounded">
+      <%= form.text_area :description , class: "p-1 w-80 rounded" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :from_date %>
+    <div class="text-gray-800 rounded">
+      <%= form.date_select :from_date %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :to_date %>
+    <div class="text-gray-800 rounded">
+      <%= form.date_select :to_date %>
+    </div>
+  </div>
+
+  <div class="py-2">
+    <%= form.submit class: "border-2 rounded border-gray-200 py-1 px-2 bg-gray-200 text-gray-800 hover:bg-gray-300" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', events_path, class: "border-2 rounded border-gray-200 py-1 px-2 bg-gray-200 text-gray-800 hover:bg-gray-300"  %>
