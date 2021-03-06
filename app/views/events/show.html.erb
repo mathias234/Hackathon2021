@@ -26,4 +26,25 @@
       <p><%= link_to attendee.user.email, profile_path(id: attendee.user.id), class: "hover:underline"%></p>
     <% end %>
   </p>
+  <br>
+  <p>
+    <%= form_with(url: post_comment_path(id: @event.id), local: true) do |form| %>
+      <div>
+        <%= form.label :comment %>
+      </div>
+      <div>
+        <%= form.text_area :comment, class: 'text-gray-800 rounded p-1 w-80' %> 
+      </div>
+      <div>
+        <%= form.submit 'Post', class: 'border-2 rounded border-gray-200 py-1 px-2 bg-gray-200 text-gray-800 hover:bg-gray-300' %></div>
+    <% end %>
+
+    <strong>Comments:</strong>
+    <% @event.comments.order(id: :desc).each do |comment| %>
+      <div class="py-2">
+        <p>Posted by <strong><%= comment.user.email %></strong></p>
+        <p class="pl-1"><%= comment.comment_text%>
+      </div>
+    <% end %>
+  </p>
 </div>

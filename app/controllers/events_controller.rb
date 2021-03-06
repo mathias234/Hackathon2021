@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @events = Event.all
+    @events = Event.all.order(:from_date)
   end
 
   # GET /events/1 or /events/1.json
@@ -13,6 +13,21 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+  end
+
+  def post_comment 
+    comment = Comment.new
+    comment.comment_text = params[:comment]
+    comment.user_id = session[:user_id]
+    comment.event_id = params[:id] 
+
+    respond_to do |format| 
+      if comment.save() 
+        format.html { redirect_to :controller => 'events', :action => 'show', :id => params[:id] }
+      else 
+        format.html { redirect_to :controller => 'events', :action => 'show', :id => params[:id], notice: 'Unable to post comment' }
+      end
+    end
   end
 
   def join_event 

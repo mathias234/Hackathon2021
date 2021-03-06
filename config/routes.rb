@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/', to: 'events#index'
   get 'join_event', to: 'events#join_event'
   get 'leave_event', to: 'events#leave_event'
+  post 'post_comment', to: 'events#post_comment'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
